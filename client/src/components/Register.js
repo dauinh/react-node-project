@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import registerService from '../services/register'
+import { Button } from '@material-ui/core'
+import TextField from '@material-ui/core/TextField'
+
 
 const Register = () => {
   const [errorMessage, setErrorMessage] = useState('')
@@ -37,43 +40,54 @@ const Register = () => {
       <h2>Register</h2>
       <h3>{errorMessage}</h3>
       <form onSubmit={handleRegister}>
-        <div className='input-box'>
-          Username &nbsp;
-          <input
-            type="text"
-            value={username}
-            name="Username"
-            onChange={({ target }) => setUsername(target.value)}
-          />
-        </div>
-        <div className='input-box'>
-          Password &nbsp;
-          <input
-            type="password"
-            value={password}
-            name="Password"
-            onChange={({ target }) => setPassword(target.value)}
-          />
-        </div>
-        <div className='input-box'>
-          Name &nbsp; &nbsp; &nbsp; &nbsp;
-          <input
-            type="text"
-            value={name}
-            name="Name"
-            onChange={({ target }) => setName(target.value)}
-          />
-        </div>
-        <div className='input-box'>
-          Breed &nbsp; &nbsp; &nbsp; &nbsp;
-          <input
-            type="text"
-            value={breed}
-            name="Breed"
-            onChange={({ target }) => setBreed(target.value)}
-          />
-        </div>
-        <button type="submit" className='register-button'>Register</button>
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          label="Username"
+          name="username"
+          value={username}
+          onChange={({ target }) => setUsername(target.value)}
+        />
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          label="Password"
+          type="password"
+          name="password"
+          value={password}
+          onChange={({ target }) => setPassword(target.value)}
+        />
+        <TextField
+          variant="outlined"
+          margin="normal"
+          fullWidth
+          label="Name"
+          name="name"
+          value={name}
+          onChange={({ target }) => setName(target.value)}
+        />
+        <TextField
+          variant="outlined"
+          margin="normal"
+          fullWidth
+          label="Breed"
+          name="breed"
+          value={breed}
+          onChange={({ target }) => setBreed(target.value)}
+        />
+        <Button 
+          type="submit"
+          fullWidth
+          className='register-button'
+          variant='contained'
+          color='primary'
+        >
+          Register
+        </Button>
       </form>
     </div>
   )
