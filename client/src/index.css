@@ -1,0 +1,33 @@
+body {
+  background-color: whitesmoke;
+}
+h2 {
+  color: rgb(57,37,21);
+}
+.center-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.register-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 10vh 30vw;
+  background-color: white;
+}
+.input-box {
+  padding: 1vh 0;
+}
+.register-button {
+  margin: 2vh 0;
+  padding: 2vh 10vw;
+  border-width: 0;
+  background-color: rgb(205,114,45);
+  font-size: medium;
+}

@@ -33,12 +33,12 @@ const Register = () => {
   }
 
   return (
-    <div>
+    <div className='register-box'>
       <h2>Register</h2>
       <h3>{errorMessage}</h3>
       <form onSubmit={handleRegister}>
-        <div>
-          username &nbsp;
+        <div className='input-box'>
+          Username &nbsp;
           <input
             type="text"
             value={username}
@@ -46,8 +46,8 @@ const Register = () => {
             onChange={({ target }) => setUsername(target.value)}
           />
         </div>
-        <div>
-          password &nbsp;
+        <div className='input-box'>
+          Password &nbsp;
           <input
             type="password"
             value={password}
@@ -55,8 +55,8 @@ const Register = () => {
             onChange={({ target }) => setPassword(target.value)}
           />
         </div>
-        <div>
-          name &nbsp; &nbsp; &nbsp; &nbsp;
+        <div className='input-box'>
+          Name &nbsp; &nbsp; &nbsp; &nbsp;
           <input
             type="text"
             value={name}
@@ -64,8 +64,8 @@ const Register = () => {
             onChange={({ target }) => setName(target.value)}
           />
         </div>
-        <div>
-          breed &nbsp; &nbsp; &nbsp; &nbsp;
+        <div className='input-box'>
+          Breed &nbsp; &nbsp; &nbsp; &nbsp;
           <input
             type="text"
             value={breed}
@@ -73,7 +73,7 @@ const Register = () => {
             onChange={({ target }) => setBreed(target.value)}
           />
         </div>
-        <button type="submit">register</button>
+        <button type="submit" className='register-button'>Register</button>
       </form>
     </div>
   )
