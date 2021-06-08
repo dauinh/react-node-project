@@ -2,13 +2,18 @@ import React, { useState, useEffect } from 'react'
 import registerService from '../services/register'
 import taskService from '../services/tasks'
 import userService from '../services/users'
+import { Button, TextField, ThemeProvider } from '@material-ui/core'
+// import { useStyles } from '../style'
+import { theme } from '../theme'
 
 const Login = ({ user, setUser }) => {
-  const [errorMessage, setErrorMessage] = useState('')
+  // const classes = useStyles()
+  // const [errorMessage, setErrorMessage] = useState('')
   const [username, setUsername] = useState('') 
   const [password, setPassword] = useState('') 
 
   useEffect(() => {
+
     const loggedUserJSON = window.localStorage.getItem('loggedAppUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
@@ -40,39 +45,53 @@ const Login = ({ user, setUser }) => {
       setUsername('')
       setPassword('')
     } catch (exception) {
-      setErrorMessage('Wrong credentials')
-      console.log('Wrong credentials')
-      setTimeout(() => {
-        setErrorMessage('Enter again')
-      }, 5000)
+      console.log(exception)
+      // setErrorMessage('Wrong credentials')
+      // console.log('Wrong credentials')
+      // setTimeout(() => {
+      //   setErrorMessage('Enter again')
+      // }, 5000)
     }
   }
 
   return (
-    <div>
-      <h2>Log in</h2>
-      <h3>{errorMessage}</h3>
-      <form onSubmit={handleLogin}>
-        <div>
-          username &ensp;
-          <input
-            type="text"
+    <div className='register-box'>
+      <h1>Log in</h1>
+      {/* <h4>{errorMessage}</h4> */}
+      <ThemeProvider theme={theme}>
+        <form onSubmit={handleLogin}>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            label="Username"
+            name="username"
             value={username}
-            name="Username"
             onChange={({ target }) => setUsername(target.value)}
           />
-        </div>
-        <div>
-          password &ensp;
-          <input
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            label="Password"
             type="password"
+            name="password"
             value={password}
-            name="Password"
             onChange={({ target }) => setPassword(target.value)}
           />
-        </div>
-        <button type="submit">login</button>
-      </form>
+          <Button 
+            type="submit"
+            fullWidth
+            className='register-button'
+            variant='contained'
+            color='primary'
+          >
+            Login
+          </Button>
+        </form>
+      </ThemeProvider>
     </div>
   )
 }

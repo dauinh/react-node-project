@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import AdminPage from './components/AdminPage'
 import UserPage from './components/UserPage'
 import Register from './components/Register'
