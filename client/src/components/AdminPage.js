@@ -12,8 +12,6 @@ const AdminPage = ({ user, logOut }) => {
   const [tasks, setTasks] = useState([])
   const options = []
 
-  let history = useHistory()
-
   useEffect(() => {
     taskService.getAll().then(tasks => {
       setTasks(tasks)

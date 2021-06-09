@@ -1,16 +1,31 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import taskService from './services/tasks'
+import userService from './services/users'
 import AdminPage from './components/AdminPage'
 import UserPage from './components/UserPage'
 import Register from './components/Register'
 import Login from './components/Login'
 import { Switch, Route, useHistory } from "react-router-dom"
-import { ThemeProvider } from '@material-ui/core'
-import { theme } from './theme'
+import { AppBar } from '@material-ui/core'
 
 function App() {
   const [user, setUser] = useState(null)
 
   let history = useHistory()
+  
+  useEffect(() => {
+    // check if token is saved in localStorage in every render
+    const loggedUserJSON = window.localStorage.getItem('loggedAppUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      taskService.setToken(user.token)
+      userService.setToken(user.token)
+      userService.getByUsername(user.username).then(data => {
+        setUser(data)
+      })
+      history.push(`${user.username}`)      // go to user route after logging in
+    }
+  }, [])
 
   const logOut = () => {
     if (window.confirm('Log out?')) {
@@ -24,7 +39,7 @@ function App() {
   ////  REGISTER & LOGIN  ////
   if (!user) {
     return (
-      <ThemeProvider theme={theme}>
+      <div>
         <Switch>
           <Route path="/login">
             <Login user={user} setUser={setUser}/>
@@ -35,7 +50,17 @@ function App() {
             <Register/>
           </Route>
         </Switch>
-      </ThemeProvider>
+      </div>
+    )
+  }
+
+  const Header = () => {
+    return (
+      <div>
+        <AppBar>
+
+        </AppBar>
+      </div>
     )
   }
   

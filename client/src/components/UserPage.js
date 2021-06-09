@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import TaskUser from './TaskUser'
-import { Link, useHistory, useParams } from 'react-router-dom'
+import { Button } from '@material-ui/core'
 
 const UserPage = ({ user, logOut }) => {
   const [noti, setNoti] = useState('Welcome to general task board')
@@ -10,14 +10,20 @@ const UserPage = ({ user, logOut }) => {
     setTasks(user.ToDo)
   })
 
-  // if (!user) return null    // handle null value for first render
+  if (!user) { console.log('flag') }
 
   return (
-    <div>
+    <div className='center-screen'>
       <h2>Task Board</h2>
       <h3>{noti}</h3>
       <p>{user.name} is logged in &nbsp;
-        <button onClick={logOut}>log out</button>
+        <Button 
+          onClick={logOut}
+          variant='contained'
+          color='primary'
+        >
+          log out
+        </Button>
       </p>
       {tasks.map(task =>
         <TaskUser key={task.id} task={task}/>

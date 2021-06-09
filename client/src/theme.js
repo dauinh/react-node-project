@@ -6,12 +6,4 @@ export const theme = createMuiTheme({
     primary: orange,
     error: red
   },
-  
-  overrides: {
-    MuiButton: {
-      text: {
-        color: 'white'
-      }
-    }
-  }
 })

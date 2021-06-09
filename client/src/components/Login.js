@@ -3,28 +3,15 @@ import registerService from '../services/register'
 import taskService from '../services/tasks'
 import userService from '../services/users'
 import { Button, TextField } from '@material-ui/core'
-import { Link, useHistory, useLocation } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 const Login = ({ user, setUser }) => {
   const [error, setError] = useState(false)
   const [errorText, setErrorText] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+
   let history = useHistory()
-  let location = useLocation()
-
-  useEffect(() => {
-
-    const loggedUserJSON = window.localStorage.getItem('loggedAppUser')
-    if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON)
-      taskService.setToken(user.token)
-      userService.setToken(user.token)
-      userService.getByUsername(user.username).then(data => {      // go to user route after logging in
-        setUser(data)
-      })
-    }
-  }, [])
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -37,12 +24,12 @@ const Login = ({ user, setUser }) => {
       )
       taskService.setToken(user.token)
       userService.setToken(user.token)
-      userService.getByUsername(user.username).then(data => {      // go to user route after logging in
+      userService.getByUsername(user.username).then(data => {
         setUser(data)
       })
       setUsername('')
       setPassword('')
-      history.push(`${username}`)
+      history.push(`${username}`)      // go to user route after logging in
     } catch (exception) {
       console.log('invalid username or password')
       setError(true)
