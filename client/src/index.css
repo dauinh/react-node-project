@@ -19,11 +19,7 @@ h1 {
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin: 5vh 15vw;
-  /* margin: 10vh 30vw; */
-}
-.input-box {
-  padding: 1vh 0;
+  padding: 5vh 15vw;
 }
 .register-button {
   margin: 2vh 0;

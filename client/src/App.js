@@ -3,6 +3,12 @@ import AdminPage from './components/AdminPage'
 import UserPage from './components/UserPage'
 import Register from './components/Register'
 import Login from './components/Login'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom"
 import { ThemeProvider } from '@material-ui/core'
 import { theme } from './theme'
 
@@ -20,10 +26,20 @@ function App() {
   ////  REGISTER & LOGIN  ////
   if (!user) {
     return (
-      <ThemeProvider theme={theme}>
-        <Register/>
-        <Login user={user} setUser={setUser}/>
-      </ThemeProvider>
+      <Router>
+        <ThemeProvider theme={theme}>
+          <Switch>
+            <Route path="/login">
+              <Login user={user} setUser={setUser}/>
+            </Route>
+          </Switch>
+          <Switch>
+            <Route path="/register">
+              <Register/>
+            </Route>
+          </Switch>
+        </ThemeProvider>
+      </Router>
     )
   }
   

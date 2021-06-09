@@ -3,12 +3,13 @@ import registerService from '../services/register'
 import taskService from '../services/tasks'
 import userService from '../services/users'
 import { Button, TextField } from '@material-ui/core'
+import { Link } from 'react-router-dom'
+
 // import { useStyles } from '../style'
 
 const Login = ({ user, setUser }) => {
   // const classes = useStyles()
-  const [errorUsername, setErrorUsername] = useState(false)
-  const [errorPassword, setErrorPassword] = useState(false)
+  const [error, setError] = useState(false)
   const [errorText, setErrorText] = useState('')
   const [username, setUsername] = useState('') 
   const [password, setPassword] = useState('') 
@@ -37,16 +38,15 @@ const Login = ({ user, setUser }) => {
       )
       taskService.setToken(user.token)
       userService.setToken(user.token)
-      // go to user route after logging in
-      userService.getByUsername(user.username).then(data => {
+      userService.getByUsername(user.username).then(data => {      // go to user route after logging in
         setUser(data)
       })
       setUsername('')
       setPassword('')
     } catch (exception) {
       console.log('invalid username or password')
-      setErrorUsername(true)
-      setErrorPassword(true)
+      setErrorText('invalid username or password')
+      setError(true)
     }
   }
 
@@ -61,8 +61,8 @@ const Login = ({ user, setUser }) => {
           fullWidth
           label="Username"
           name="username"
-          error={errorUsername}
-          helperText={errorUsername ? errorText : ""}
+          error={error}
+          helperText={error ? errorText : ""}
           value={username}
           onChange={({ target }) => setUsername(target.value)}
         />
@@ -74,8 +74,8 @@ const Login = ({ user, setUser }) => {
           label="Password"
           type="password"
           name="password"
-          error={errorPassword}
-          helperText={errorPassword ? errorText : ""}
+          error={error}
+          helperText={error ? errorText : ""}
           value={password}
           onChange={({ target }) => setPassword(target.value)}
         />
@@ -89,6 +89,7 @@ const Login = ({ user, setUser }) => {
           Login
         </Button>
       </form>
+      <Link to='/register'>Don't have an account? Register here</Link>
     </div>
   )
 }

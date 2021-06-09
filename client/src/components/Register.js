@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import registerService from '../services/register'
 import { Button, TextField } from '@material-ui/core'
+import { Link } from 'react-router-dom'
 // import { useStyles } from '../style'
 
 const Register = () => {
   // const classes = useStyles()
-  // const [errorMessage, setErrorMessage] = useState('')
+  const [error, setError] = useState(false)
+  const [errorText, setErrorText] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
@@ -26,14 +28,14 @@ const Register = () => {
         breed: breed
       }
       await registerService.register(newUser)
-      // setErrorMessage('Register successfully')
       setUsername('')
       setPassword('')
       setName('')
       setBreed('')
     } catch (exception) {
-      // setErrorMessage('Invalid username or passwords')
-      console.log(exception)
+      setError(true)
+      setErrorText('invalid username or password')
+      console.log('invalid username or password')
     }
   }
 
@@ -49,7 +51,8 @@ const Register = () => {
           fullWidth
           label="Username"
           name="username"
-          helperText={helperText.username}
+          error={error}
+          helperText={error ? errorText : helperText.username}
           value={username}
           onChange={({ target }) => setUsername(target.value)}
         />
@@ -61,7 +64,8 @@ const Register = () => {
           label="Password"
           type="password"
           name="password"
-          helperText={helperText.password}
+          error={error}
+          helperText={error ? errorText : helperText.password}
           value={password}
           onChange={({ target }) => setPassword(target.value)}
         />
@@ -93,6 +97,7 @@ const Register = () => {
           Register
         </Button>
       </form>
+      <Link to='/login'>Log in</Link>
     </div>
   )
 }
