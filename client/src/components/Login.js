@@ -5,7 +5,7 @@ import userService from '../services/users'
 import { Button, TextField } from '@material-ui/core'
 import { Link, useHistory } from 'react-router-dom'
 
-const Login = ({ user, setUser }) => {
+const Login = ({ setUser }) => {
   const [error, setError] = useState(false)
   const [errorText, setErrorText] = useState('')
   const [username, setUsername] = useState('')
@@ -24,7 +24,7 @@ const Login = ({ user, setUser }) => {
       )
       taskService.setToken(user.token)
       userService.setToken(user.token)
-      userService.getByUsername(user.username).then(data => {
+      userService.getByUsername(user.username).then(data => {   // send data using useParams?
         setUser(data)
       })
       setUsername('')

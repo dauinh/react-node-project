@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import taskService from './services/tasks'
 import userService from './services/users'
+import Header from './components/common/Header'
 import AdminPage from './components/AdminPage'
 import UserPage from './components/UserPage'
 import Register from './components/Register'
 import Login from './components/Login'
 import { Switch, Route, useHistory } from "react-router-dom"
-import { AppBar } from '@material-ui/core'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -25,7 +25,7 @@ function App() {
       })
       history.push(`${user.username}`)      // go to user route after logging in
     }
-  }, [])
+  }, [history])
 
   const logOut = () => {
     if (window.confirm('Log out?')) {
@@ -42,7 +42,7 @@ function App() {
       <div>
         <Switch>
           <Route path="/login">
-            <Login user={user} setUser={setUser}/>
+            <Login setUser={setUser}/>
           </Route>
         </Switch>
         <Switch>
@@ -53,22 +53,13 @@ function App() {
       </div>
     )
   }
-
-  const Header = () => {
-    return (
-      <div>
-        <AppBar>
-
-        </AppBar>
-      </div>
-    )
-  }
   
   ////  USER PAGE  ////
   if (!user.isAdmin) {
     return (
       <Route path="/:username">
-        <UserPage user={user} logOut={logOut}/>
+        <Header user={user} logOut={logOut}/>
+        <UserPage user={user}/>
       </Route>
     )
   }
@@ -76,7 +67,8 @@ function App() {
   ////  ADMIN PAGE  ////
   return (
     <Route path="/:username">
-      <AdminPage user={user} logOut={logOut}/>
+      <Header user={user} logOut={logOut}/>
+      <AdminPage/>
     </Route>
   )
 }

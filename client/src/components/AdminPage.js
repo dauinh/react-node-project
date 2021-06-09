@@ -7,7 +7,7 @@ import taskService from '../services/tasks'
 
 import { Link, useHistory, useLocation } from 'react-router-dom'
 
-const AdminPage = ({ user, logOut }) => {
+const AdminPage = () => {
   const [userList, setUserList] = useState([])
   const [tasks, setTasks] = useState([])
   const options = []
@@ -39,10 +39,6 @@ const AdminPage = ({ user, logOut }) => {
   return (
     <div>
       <h1>Welcome to MyDoggo</h1>
-      <p>{user.name} is logged in &nbsp;
-        <button onClick={logOut}>log out</button>
-      </p>
-
       <h2>Task Board</h2>
       {tasks.map(task =>
         <TaskAdmin key={task.id} task={task} options={options}/>
