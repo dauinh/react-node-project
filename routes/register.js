@@ -31,7 +31,7 @@ registerRouter.post('/login', async (request, response) => {
   const token = jwt.sign(
     userForToken,
     config.SECRET_KEY,
-    { expiresIn: 60*60 }
+    { expiresIn: 60 }
   )
   
   response

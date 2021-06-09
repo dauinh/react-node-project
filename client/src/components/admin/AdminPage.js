@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import UserUpdate from './UserUpdate'
 import TaskCreate from './TaskCreate'
 import TaskAdmin from './TaskAdmin'
-import userService from '../services/users'
-import taskService from '../services/tasks'
+import userService from '../../services/users'
+import taskService from '../../services/tasks'
 
 import { Link, useHistory, useLocation } from 'react-router-dom'
 

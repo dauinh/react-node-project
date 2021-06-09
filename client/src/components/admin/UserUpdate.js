@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { DragSwitch } from 'react-dragswitch'
 import 'react-dragswitch/dist/index.css'
-import userService from '../services/users'
+import userService from '../../services/users'
 
 const UserUpdate = ({ selectedUser }) => {
   const [name, setName] = useState('')

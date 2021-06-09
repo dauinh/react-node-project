@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import jwt_decode from 'jwt-decode'
 import taskService from './services/tasks'
 import userService from './services/users'
 import Header from './components/common/Header'
-import AdminPage from './components/AdminPage'
-import UserPage from './components/UserPage'
+import AdminPage from './components/admin/AdminPage'
+import UserPage from './components/user/UserPage'
 import Register from './components/Register'
 import Login from './components/Login'
 import { Switch, Route, useHistory } from "react-router-dom"
@@ -12,12 +13,20 @@ function App() {
   const [user, setUser] = useState(null)
 
   let history = useHistory()
+  let tokenExpired = false
   
   useEffect(() => {
     // check if token is saved in localStorage in every render
     const loggedUserJSON = window.localStorage.getItem('loggedAppUser')
-    if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON)
+    if (!loggedUserJSON) return null
+    const user = JSON.parse(loggedUserJSON)
+    const decodedToken = jwt_decode(user.token, { complete: true })
+    const dateNow = new Date()
+    if (decodedToken.exp < dateNow.getTime()) {
+      tokenExpired = true
+      logOut()
+    }
+    if (!tokenExpired) {
       taskService.setToken(user.token)
       userService.setToken(user.token)
       userService.getByUsername(user.username).then(data => {

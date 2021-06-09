@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Select from 'react-select'
-import userService from '../services/users'
-import taskService from '../services/tasks'
+import taskService from '../../services/tasks'
 
 const TaskCreate = ({ options }) => {
   const [newTask, setNewTask] = useState('')

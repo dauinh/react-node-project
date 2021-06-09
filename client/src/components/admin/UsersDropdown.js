@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Select from 'react-select'
-import userService from '../services/users'
+import userService from '../../services/users'
 
 const UsersDropdown = () => {
   const [assignedUser, setAssignedUser] = useState('')

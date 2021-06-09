@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Select from 'react-select'
-import taskService from '../services/tasks'
+import taskService from '../../services/tasks'
 
 const TaskAdmin = ({ task, options }) => {
   const [assignedUser, setAssignedUser] = useState('')
