@@ -45,8 +45,11 @@ const Login = ({ user, setUser }) => {
       setPassword('')
     } catch (exception) {
       console.log('invalid username or password')
-      setErrorText('invalid username or password')
       setError(true)
+      setErrorText('invalid username or password')
+      setTimeout(() => {
+        setError(false)
+      }, 3000)
     }
   }
 
@@ -89,7 +92,7 @@ const Login = ({ user, setUser }) => {
           Login
         </Button>
       </form>
-      <Link to='/register'>Don't have an account? Register here</Link>
+      <Link to='/register' className='register-link'>Don't have an account? Register here</Link>
     </div>
   )
 }

@@ -8,6 +8,7 @@ const Register = () => {
   // const classes = useStyles()
   const [error, setError] = useState(false)
   const [errorText, setErrorText] = useState('')
+  const [message, setMessage] = useState('Create an account to start using app')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
@@ -28,21 +29,26 @@ const Register = () => {
         breed: breed
       }
       await registerService.register(newUser)
+      setMessage('Register successfully')
       setUsername('')
       setPassword('')
       setName('')
       setBreed('')
     } catch (exception) {
-      setError(true)
-      setErrorText('invalid username or password')
       console.log('invalid username or password')
+      setError(true)
+      setMessage('Try again')
+      setErrorText('invalid username or password')
+      setTimeout(() => {
+        setError(false)
+      }, 3000)
     }
   }
 
   return (
     <div className='register-box'>
       <h1>Register</h1>
-      {/* <h4>{errorMessage}</h4> */}
+      <h4>{message}</h4>
       <form onSubmit={handleRegister}>
         <TextField
           variant="outlined"
@@ -97,7 +103,7 @@ const Register = () => {
           Register
         </Button>
       </form>
-      <Link to='/login'>Log in</Link>
+      <Link to='/login' className='register-link'>Continue to log in</Link>
     </div>
   )
 }

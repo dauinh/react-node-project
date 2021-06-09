@@ -1,9 +1,10 @@
 body {
   background-color: whitesmoke;
-  font-family: 'Calibri';
+  font-family: "Roboto", "Helvetica", "Arial", "sans-serif";
 }
-h1 {
+h1, h4 {
   color: rgb(57,37,21);
+  font-weight: 300;
 }
 .center-screen {
   display: flex;
@@ -25,4 +26,9 @@ h1 {
   margin: 2vh 0;
   padding: 2vh 10vw;
   font-size: medium;
+}
+.register-link {
+  text-decoration: none;
+  color: #ff9800;
+  padding: 5vh 0;
 }
