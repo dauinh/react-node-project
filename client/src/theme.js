@@ -1,5 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles'
-import { red, amber, orange } from '@material-ui/core/colors'
+import { red, orange } from '@material-ui/core/colors'
 
 export const theme = createMuiTheme({
   palette: {
@@ -9,7 +9,21 @@ export const theme = createMuiTheme({
 
   overrides: {
     MuiToolbar: {
-      regular: orange[300]
+      root: {
+        justifyContent: 'space-between'
+      },
+      regular: {
+        backgroundColor: orange[300]
+      }
+    },
+
+    MuiButton: {
+      root: {
+        color: '#392515'
+      },
+      containedPrimary: {
+        color: orange[50]
+      }
     }
   }
 })
