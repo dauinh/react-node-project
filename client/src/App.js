@@ -3,6 +3,8 @@ import AdminPage from './components/AdminPage'
 import UserPage from './components/UserPage'
 import Register from './components/Register'
 import Login from './components/Login'
+import { ThemeProvider } from '@material-ui/core'
+import { theme } from './theme'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -18,10 +20,10 @@ function App() {
   ////  REGISTER & LOGIN  ////
   if (!user) {
     return (
-      <div>
+      <ThemeProvider theme={theme}>
         <Register/>
         <Login user={user} setUser={setUser}/>
-      </div>
+      </ThemeProvider>
     )
   }
   
