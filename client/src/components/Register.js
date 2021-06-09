@@ -2,10 +2,8 @@ import React, { useState } from 'react'
 import registerService from '../services/register'
 import { Button, TextField } from '@material-ui/core'
 import { Link } from 'react-router-dom'
-// import { useStyles } from '../style'
 
 const Register = () => {
-  // const classes = useStyles()
   const [error, setError] = useState(false)
   const [errorText, setErrorText] = useState('')
   const [message, setMessage] = useState('Create an account to start using app')

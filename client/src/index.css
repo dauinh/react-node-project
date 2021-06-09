@@ -1,8 +1,9 @@
 body {
   background-color: whitesmoke;
+  font-weight: 300;
   font-family: "Roboto", "Helvetica", "Arial", "sans-serif";
 }
-h1, h4 {
+h1, h2, h3, h4 {
   color: rgb(57,37,21);
   font-weight: 300;
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import TaskUser from './TaskUser'
+import { Link, useHistory, useParams } from 'react-router-dom'
 
 const UserPage = ({ user, logOut }) => {
   const [noti, setNoti] = useState('Welcome to general task board')
@@ -8,8 +9,8 @@ const UserPage = ({ user, logOut }) => {
   useEffect(() => {
     setTasks(user.ToDo)
   })
-  // handle null value for first render
-  if (!user) return null
+
+  // if (!user) return null    // handle null value for first render
 
   return (
     <div>

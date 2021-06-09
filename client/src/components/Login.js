@@ -3,16 +3,15 @@ import registerService from '../services/register'
 import taskService from '../services/tasks'
 import userService from '../services/users'
 import { Button, TextField } from '@material-ui/core'
-import { Link } from 'react-router-dom'
-
-// import { useStyles } from '../style'
+import { Link, useHistory, useLocation } from 'react-router-dom'
 
 const Login = ({ user, setUser }) => {
-  // const classes = useStyles()
   const [error, setError] = useState(false)
   const [errorText, setErrorText] = useState('')
-  const [username, setUsername] = useState('') 
-  const [password, setPassword] = useState('') 
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  let history = useHistory()
+  let location = useLocation()
 
   useEffect(() => {
 
@@ -43,6 +42,7 @@ const Login = ({ user, setUser }) => {
       })
       setUsername('')
       setPassword('')
+      history.push(`${username}`)
     } catch (exception) {
       console.log('invalid username or password')
       setError(true)

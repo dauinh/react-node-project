@@ -5,10 +5,14 @@ import TaskAdmin from './TaskAdmin'
 import userService from '../services/users'
 import taskService from '../services/tasks'
 
+import { Link, useHistory, useLocation } from 'react-router-dom'
+
 const AdminPage = ({ user, logOut }) => {
   const [userList, setUserList] = useState([])
   const [tasks, setTasks] = useState([])
   const options = []
+
+  let history = useHistory()
 
   useEffect(() => {
     taskService.getAll().then(tasks => {
