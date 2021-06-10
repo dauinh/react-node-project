@@ -9,8 +9,6 @@ const UserPage = ({ user }) => {
     setTasks(user.ToDo)
   }, [setTasks, user.ToDo])
 
-  if (!user) { console.log('flag') }
-
   return (
     <div className='center-screen'>
       <h2>Task Board</h2>

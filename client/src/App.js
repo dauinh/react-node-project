@@ -18,26 +18,33 @@ function App() {
   useEffect(() => {
     // check if token is saved in localStorage in every render
     const loggedUserJSON = window.localStorage.getItem('loggedAppUser')
-    if (!loggedUserJSON) return null
-    const user = JSON.parse(loggedUserJSON)
-    const decodedToken = jwt_decode(user.token, { complete: true })
-    const dateNow = new Date()
-    if (decodedToken.exp < dateNow.getTime()) {
-      tokenExpired = true
-      logOut()
-    }
-    if (!tokenExpired) {
-      taskService.setToken(user.token)
-      userService.setToken(user.token)
-      userService.getByUsername(user.username).then(data => {
-        setUser(data)
-      })
-      history.push(`${user.username}`)      // go to user route after logging in
+
+    if (loggedUserJSON) {    // token is still in localStorage, else back to login
+      const user = JSON.parse(loggedUserJSON)
+      const decodedToken = jwt_decode(user.token, { complete: true })
+      const dateNow = new Date()
+
+      if ((decodedToken.exp * 1000) < dateNow.getTime()) {      // token expired
+        tokenExpired = true
+        window.alert('Token expired, logging out')
+        logOut()
+      }
+      
+      if (!tokenExpired) {
+        taskService.setToken(user.token)      // save valid token to use services
+        userService.setToken(user.token)
+        userService.getByUsername(user.username).then(data => {
+          setUser(data)
+        })
+        history.push(`${user.username}`)      // go to user route
+      } 
+    } else {
+      history.push('/login') 
     }
   }, [history])
 
   const logOut = () => {
-    if (window.confirm('Log out?')) {
+    if (window.confirm('Log out?') || tokenExpired) {
       window.localStorage.removeItem('loggedAppUser')
       window.localStorage.clear()
       history.push('/login')

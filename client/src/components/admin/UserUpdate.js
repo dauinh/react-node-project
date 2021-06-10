@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { DragSwitch } from 'react-dragswitch'
-import 'react-dragswitch/dist/index.css'
+import { Switch } from '@material-ui/core'
 import userService from '../../services/users'
 
 const UserUpdate = ({ selectedUser }) => {
@@ -8,18 +7,23 @@ const UserUpdate = ({ selectedUser }) => {
   const [breed, setBreed] = useState('')
   const [isAdmin, setIsAdmin] = useState(selectedUser.isAdmin)
 
+  const toggleChecked = () => {
+    setIsAdmin((prev) => !prev)
+  }
+
   const handleUserUpdate = async (event) => {
     event.preventDefault()
     try {
       const update = {
         name: name || selectedUser.name,
         breed: breed || selectedUser.breed,
-        isAdmin: isAdmin || selectedUser.isAdmin
+        isAdmin: isAdmin
       }
       await userService.update(selectedUser.id, update)
       setName('')
       setBreed('')
       setIsAdmin(selectedUser.isAdmin)
+      console.log(isAdmin)
       window.alert('Updated successfully, refreshing page to see changes')
       window.location.reload()
     } catch (exception) {
@@ -50,7 +54,7 @@ const UserUpdate = ({ selectedUser }) => {
         </div>
         <div>
           Admin &nbsp;
-          <DragSwitch checked={isAdmin} onChange={setIsAdmin}/>
+          <Switch checked={isAdmin} onChange={toggleChecked} color='primary'/>
         </div>
         <button type="submit">update</button>
       </form>
