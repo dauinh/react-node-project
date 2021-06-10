@@ -27,3 +27,24 @@ h1, h2, h3, h4 {
   color: #ff9800;
   padding: 5vh 0;
 }
+.page-box {
+  margin: 84px 0;
+}
+.select-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.select {
+  width: 200px;
+}
+@media only screen and (min-width: 600px) {
+  /* For tablet */
+}
+@media only screen and (min-width: 768px) {
+  /* For laptop */
+  .page-box {
+    margin: 84px 24px;
+  }
+}

@@ -37,7 +37,7 @@ const AdminPage = () => {
   if (!tasks) return null    // handle null value in first render
 
   return (
-    <div>
+    <div className='page-box'>
       <h1>Welcome to MyDoggo</h1>
       <h2>Task Board</h2>
       {tasks.map(task =>

@@ -35,9 +35,9 @@ const TaskCreate = ({ options }) => {
         />
       </div>
       <div>
-        Username &nbsp;
+        assign to &nbsp;
         <Select
-          defaultValue={assignedUser}
+          isMulti
           onChange={setAssignedUser}
           options={options}
         />
