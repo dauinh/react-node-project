@@ -53,7 +53,7 @@ const TaskAdmin = ({ task, options }) => {
 
   return (
     <div>
-      ✏️ {task.item}
+      ✏️ {task.item} &nbsp;
       <Button onClick={handleDialogOpen}>Edit</Button>
       <Dialog
         open={open}
@@ -92,7 +92,7 @@ const TaskAdmin = ({ task, options }) => {
           options={options}
           styles={selectStyles}
           className='select'
-        />
+        /> &nbsp;
         <Button onClick={(event) => 
           handleUserAdd(event, task.id)}>add</Button>
       </div>

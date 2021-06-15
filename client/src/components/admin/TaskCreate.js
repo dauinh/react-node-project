@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Select from 'react-select'
-import { Button } from '@material-ui/core'
+import { Button, TextField } from '@material-ui/core'
 import taskService from '../../services/tasks'
 
 const TaskCreate = ({ options }) => {
@@ -26,23 +26,25 @@ const TaskCreate = ({ options }) => {
   }
   return (
     <form onSubmit={handleTaskCreate}>
-      <div>
-        Task &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        <input
-          type="text"
-          name="Task"
-          value={newTask}
-          onChange={({ target }) => {setNewTask(target.value)}}
-        />
-      </div>
-      <div>
+      <TextField
+        variant="outlined"
+        margin="normal"
+        fullWidth
+        multiline
+        label="Task"
+        name="task"
+        value={newTask}
+        onChange={({ target }) => {setNewTask(target.value)}}
+      />
+      <div className='select-box'>
         assign to &nbsp;
         <Select
           onChange={setAssignedUser}
           options={options}
-        />
+          className='select'
+        /> &nbsp;
+        <Button type="submit">assign</Button>
       </div>
-      <Button type="submit">assign</Button>
     </form>
   )
 }
