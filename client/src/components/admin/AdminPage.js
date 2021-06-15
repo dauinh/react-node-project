@@ -24,15 +24,6 @@ const AdminPage = () => {
   userList.map(user => {    // set options to list of users
     options.push({value: user, label: `${user.name} (${user.username})`})
   })
-
-  const deleteUser = async (event, id, username) => {
-    event.preventDefault()
-    if (window.confirm(`Delete user ${username} ?`)) {
-      await userService.deleteUser(id)
-      window.alert('Deleted successfully, refreshing page to see changes')
-      window.location.reload()
-    }
-  }
   
   if (!tasks) return null    // handle null value in first render
 
@@ -55,9 +46,6 @@ const AdminPage = () => {
             Username: {selectedUser.username} <br></br>
             Breed: {selectedUser.breed} <br></br>
             Admin: {selectedUser.isAdmin.toString()} <br></br>
-
-            <button onClick={(event) => 
-              deleteUser(event, selectedUser.id, selectedUser.username)}>delete</button>
           </p>
           <UserUpdate selectedUser={selectedUser}/> <br></br>
         </div>

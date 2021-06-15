@@ -1,18 +1,39 @@
 import React, { useState } from 'react'
-import { Switch } from '@material-ui/core'
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Switch, TextField } from '@material-ui/core'
 import userService from '../../services/users'
 
 const UserUpdate = ({ selectedUser }) => {
   const [name, setName] = useState('')
   const [breed, setBreed] = useState('')
   const [isAdmin, setIsAdmin] = useState(selectedUser.isAdmin)
+  const [open, setOpen] = useState(false)
+
+  const handleDialogOpen = () => {
+    setOpen(true)
+  }
+  const handleDialogClose = () => {
+    setOpen(false)
+    setName('')
+    setBreed('')
+  }
 
   const toggleChecked = () => {
     setIsAdmin((prev) => !prev)
   }
 
+  const deleteUser = async (event, id, username) => {
+    event.preventDefault()
+    setOpen(false)
+    if (window.confirm(`Delete user ${username} ?`)) {
+      await userService.deleteUser(id)
+      window.alert('Deleted successfully, refreshing page to see changes')
+      window.location.reload()
+    }
+  }
+
   const handleUserUpdate = async (event) => {
     event.preventDefault()
+    setOpen(false)
     try {
       const update = {
         name: name || selectedUser.name,
@@ -20,8 +41,6 @@ const UserUpdate = ({ selectedUser }) => {
         isAdmin: isAdmin
       }
       await userService.update(selectedUser.id, update)
-      setName('')
-      setBreed('')
       setIsAdmin(selectedUser.isAdmin)
       console.log(isAdmin)
       window.alert('Updated successfully, refreshing page to see changes')
@@ -33,31 +52,45 @@ const UserUpdate = ({ selectedUser }) => {
 
   return (
     <div>
-      <form onSubmit={handleUserUpdate}>
-        <div>
-          Name &nbsp;
-          <input
-            type="text"
-            value={name}
-            name="Name"
-            onChange={({ target }) => setName(target.value)}
-          />
-        </div>
-        <div>
-          Breed &nbsp;
-          <input
-            type="text"
-            value={breed}
-            name="Breed"
-            onChange={({ target }) => setBreed(target.value)}
-          />
-        </div>
-        <div>
-          Admin &nbsp;
-          <Switch checked={isAdmin} onChange={toggleChecked} color='primary'/>
-        </div>
-        <button type="submit">update</button>
-      </form>
+      <Button onClick={handleDialogOpen}>Edit</Button>
+      <Dialog
+        open={open}
+        close={handleDialogClose}
+        fullWidth
+        scroll='paper'
+      >
+        <DialogTitle>Edit user '{selectedUser.name}'</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            <TextField
+              variant='outlined'
+              fullWidth
+              name="Name"
+              label="Name"
+              value={name}
+              onChange={({ target }) => setName(target.value)}
+            />
+            <TextField
+              variant='outlined'
+              fullWidth
+              name="Breed"
+              label="Breed"
+              value={breed}
+              onChange={({ target }) => setBreed(target.value)}
+            />
+            <div>
+              Admin &nbsp;
+              <Switch checked={isAdmin} onChange={toggleChecked} color='primary'/>
+            </div>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleUserUpdate}>update</Button>
+          <Button onClick={(event) => 
+              deleteUser(event, selectedUser.id, selectedUser.username)}>delete</Button>
+          <Button onClick={handleDialogClose}>Cancel</Button>
+        </DialogActions>
+      </Dialog>
     </div>
   )
 }
