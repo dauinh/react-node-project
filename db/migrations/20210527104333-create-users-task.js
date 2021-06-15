@@ -10,7 +10,8 @@ module.exports = {
       },
       userId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
+        onDelete: 'CASCADE',
         references: {     // User hasMany Tasks 1:n
           model: 'Users',
           key: 'id'
@@ -18,7 +19,8 @@ module.exports = {
       },
       taskId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
+        onDelete: 'CASCADE',
         references: {     // Task hasMany Users 1:m
           model: 'Tasks',
           key: 'id'

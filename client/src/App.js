@@ -26,7 +26,7 @@ function App() {
 
       if ((decodedToken.exp * 1000) < dateNow.getTime()) {      // token expired
         tokenExpired = true
-        window.alert('Token expired, logging out')
+        window.alert('Token expired, please log out')
         logOut()
       }
       

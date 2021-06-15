@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Select from 'react-select'
-import { Button, ButtonGroup, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@material-ui/core'
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@material-ui/core'
 import taskService from '../../services/tasks'
 
 const TaskAdmin = ({ task, options }) => {
@@ -61,7 +61,7 @@ const TaskAdmin = ({ task, options }) => {
         fullWidth
         scroll='paper'
       >
-        <DialogTitle>Edit task</DialogTitle>
+        <DialogTitle>Edit task '{task.item}'</DialogTitle>
         <DialogContent>
           <DialogContentText>
             Enter new task in the box and hit UPDATE <br></br>

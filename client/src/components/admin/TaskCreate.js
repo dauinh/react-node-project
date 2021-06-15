@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Select from 'react-select'
+import { Button } from '@material-ui/core'
 import taskService from '../../services/tasks'
 
 const TaskCreate = ({ options }) => {
@@ -37,12 +38,11 @@ const TaskCreate = ({ options }) => {
       <div>
         assign to &nbsp;
         <Select
-          isMulti
           onChange={setAssignedUser}
           options={options}
         />
       </div>
-      <button type="submit">assign</button>
+      <Button type="submit">assign</Button>
     </form>
   )
 }
