@@ -24,7 +24,7 @@ const Login = ({ setUser }) => {
       )
       taskService.setToken(user.token)
       userService.setToken(user.token)
-      userService.getByUsername(user.username).then(data => {   // send data using useParams?
+      userService.getByUsername(user.username).then(data => {
         setUser(data)
       })
       setUsername('')

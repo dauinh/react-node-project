@@ -43,14 +43,6 @@ const TaskAdmin = ({ task, options }) => {
     window.location.reload()
   }
 
-  const selectStyles = {
-    option: (provided, state) => ({
-      ...provided,
-      color: state.isSelected ? 'red' : 'blue',
-      padding: 20,
-    })
-  }
-
   return (
     <div>
       ✏️ {task.item} &nbsp;
@@ -90,7 +82,6 @@ const TaskAdmin = ({ task, options }) => {
         <Select
           onChange={setAssignedUser}
           options={options}
-          styles={selectStyles}
           className='select'
         /> &nbsp;
         <Button onClick={(event) => 

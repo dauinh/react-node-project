@@ -1,67 +1,121 @@
 # First React & Node App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+My first web app using React and Node 🎉
 
-## Available Scripts
+## **Description**
 
-In the project directory, you can run:
+### *What your application does*
 
-### `npm start`
+Users can register and log in as either **Admin** or **User**.
+- **Admin** can manage users and tasks: 
+  - update users info (name, breed, admin status)
+  - delete users
+  - assign tasks to users
+  - add users to previous tasks
+  - delete tasks
+- **User** can only see tasks that are assigned to them.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### *Future features*
 
-### `npm test`
+- **User** can check off task
+- General board where users can interact
+- Comment section for each task
+- **Admin** can set deadlines for tasks
+- Calendar feature to see all tasks
+- **Admin** and **User** can change their own passwords.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## **How to Install**
 
-### `npm run build`
+This project requires the following tools:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [Node.js](https://nodejs.org/en/): an open-source, cross-platform, back-end JavaScript runtime environment
+- [NPM](https://www.npmjs.com/): a package manager for Node.js
+- [PostgreSQL](https://www.postgresql.org/): a relational database system
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Step 1: Clone repository**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+In your folder, run following commands:
 
-### `npm run eject`
+```
+$ git clone https://github.com/dauinh/react-node-project.git
+$ cd react-node-project
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Step 2: Install dependencies**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This project needs to install dependencies for both backend server and frontend. For backend, in project directory, run:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+# /react-node-project
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+$ npm install
+```
 
-## Learn More
+On another terminal, in the root directory, run these commands to install dependencies the frontend:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+# /react-node-project
+$ cd client
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# /react-node-project/client
+$ npm install
+```
 
-### Code Splitting
+Keep this terminal open to run frontend later.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**Step 3: Create environment variables**
 
-### Analyzing the Bundle Size
+Before starting the app, you need to create a `.env` file in root directory with the following variables:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
+PORT=choose_your_favorite_port
 
-### Making a Progressive Web App
+SECRET_KEY=key_to_create_password_hash
+ADMIN_PASSWORD=password_for_first_admin
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+DB_USER=your_postgres_user
+DB_PASSWORD=your_postgres_password
+DB_NAME=your_postgres_database_name
+DB_HOST=127.0.0.1    # http://localhost
+```
 
-### Advanced Configuration
+*Note: `ADMIN_PASSWORD` is the password of the app's first **Admin**, but it only works before seeding. Undo most recent seeds by running `npx sequelize-cli db:seed:undo`.*
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+**Step 4: Run server**
 
-### Deployment
+To start the backend server, you can run these commands in the project directory:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```
+# /react-node-project
+# start migrating
+$ npx sequelize-cli db:migrate
+$ npx sequelize-chi db:seed:all
 
-### `npm run build` fails to minify
+# start server
+$ npm start
+```
+Change the proxy in `root/client/package.json` to whatever `PORT` you are using in `.env` file.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+"proxy": "http://localhost:[your_favorite_port]",
+```
+
+On the frontend terminal, run:
+
+```
+# /react-node-project/client
+$ npm start
+```
+
+React will automatically open the app in your browser. If that doesn't happen, open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+## **How to Use**
+
+Create a new account from register form and log in to see **User**'s display.
+
+Or log into **Admin**'s account created from seeder:
+
+```
+Username: bimbim
+Password: [ADMIN_PASSWORD]    // or "sunshine" if ADMIN_PASSWORD is empty
+```
