@@ -39,7 +39,7 @@ function App() {
         history.push(`${user.username}`)      // go to user route
       } 
     } else {
-      history.push('/login') 
+      history.push('/') 
     }
   }, [history])
 
