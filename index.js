@@ -19,6 +19,7 @@ app.use(logger("dev"))
 
 // MIDDLEWARE
 // Parse incoming requests data
+app.use(express.static('build'))
 app.use(cors())
 app.use(express.json())
 
@@ -31,10 +32,6 @@ db.sequelize.sync().then(result => {
 
 // ROUTES
 
-// can be refactored to routes/index.js
-// export as function app => { app.use('/', userRouter)}
-// import as mountRoutes = require('./routes')
-// use as mountRoutes(app)
 app.use('/', registerRouter)
 app.use(token.tokenExtractor)
 app.use('/api/users', token.userExtractor, userRouter)
