@@ -42,6 +42,6 @@ app.use('/api/tasks', taskRouter)
 
 const server = http.createServer(app)
 
-server.listen(config.PORT, () => {
+server.listen(config.PORT || 3000, () => {
   console.log(`🐕 Server running on port ${config.PORT} 🐕`)
 })
