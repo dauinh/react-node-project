@@ -5,8 +5,6 @@ import TaskAdmin from './TaskAdmin'
 import userService from '../../services/users'
 import taskService from '../../services/tasks'
 
-import { Link, useHistory, useLocation } from 'react-router-dom'
-
 const AdminPage = () => {
   const [userList, setUserList] = useState([])
   const [tasks, setTasks] = useState([])
@@ -29,7 +27,7 @@ const AdminPage = () => {
 
   return (
     <div className='page-box'>
-      <h1>Welcome to MyDoggo</h1>
+      <h1>Welcome to MiDoggo</h1>
       <h2>Task Board</h2>
       {tasks.map(task =>
         <TaskAdmin key={task.id} task={task} options={options}/>
