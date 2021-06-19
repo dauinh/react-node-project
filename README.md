@@ -43,14 +43,21 @@ $ cd react-node-project
 
 **Step 2: Install dependencies**
 
-This project needs to install dependencies for both backend server and frontend.
+This project needs to install dependencies for both backend server and frontend. For backend, in project directory, run:
 
 ```
-# in project root directory, install backend dependencies
-$ npm install
+# /react-node-project
 
-# install frontend dependencies
+$ npm install
+```
+
+On another terminal, in the root directory, run these commands to install dependencies the frontend:
+
+```
+# /react-node-project
 $ cd client
+
+# /react-node-project/client
 $ npm install
 ```
 
@@ -74,15 +81,10 @@ DB_HOST=127.0.0.1    # http://localhost
 
 **Step 4: Run server**
 
-Change the proxy in `root/client/package.json` to whatever `PORT` you are using in `.env` file. The default port is `3000`.
+To start the backend server, you can run these commands in the project directory:
 
 ```
-"proxy": "http://localhost:[your_favorite_port]",
-```
-
-To start the app, you can run these commands in the project directory:
-
-```
+# /react-node-project
 # start migrating
 $ npx sequelize-cli db:migrate
 $ npx sequelize-chi db:seed:all
@@ -90,8 +92,20 @@ $ npx sequelize-chi db:seed:all
 # start server
 $ npm start
 ```
+Change the proxy in `root/client/package.json` to whatever `PORT` you are using in `.env` file.
 
-Open the app in your browser with the appropiate `PORT`.
+```
+"proxy": "http://localhost:[your_favorite_port]",
+```
+
+On the frontend terminal, run:
+
+```
+# /react-node-project/client
+$ npm start
+```
+
+React will automatically open the app in your browser. If that doesn't happen, open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## **How to Use**
 
