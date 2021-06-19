@@ -54,8 +54,6 @@ $ cd client
 $ npm install
 ```
 
-Keep this terminal open to run frontend later.
-
 **Step 3: Create environment variables**
 
 Before starting the app, you need to create a `.env` file in root directory with the following variables:
