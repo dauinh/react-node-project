@@ -39,7 +39,7 @@ function App() {
         history.push(`${user.username}`)      // go to user route
       } 
     } else {
-      history.push('/') 
+      history.push('/login') 
     }
   }, [history])
 
@@ -47,7 +47,7 @@ function App() {
     if (window.confirm('Log out?') || tokenExpired) {
       window.localStorage.removeItem('loggedAppUser')
       window.localStorage.clear()
-      history.push('/')
+      history.push('/login')
       window.location.reload()
     }
   }
