@@ -2,7 +2,7 @@
 
 My first web app using React and Node 🎉
 
-[Here is the demo](https://midoggo.herokuapp.com/login)
+[Here is the demo](https://midoggo.herokuapp.com)
 
 ## **Description**
 
