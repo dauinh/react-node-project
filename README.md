@@ -105,3 +105,4 @@ Or log into **Admin**'s account created from seeder:
 Username: bimbim
 Password: [ADMIN_PASSWORD]    // or "sunshine" if ADMIN_PASSWORD is empty
 ```
+*Note: `ADMIN_PASSWORD` for the demo is not publicly accessible.*
