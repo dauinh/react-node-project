@@ -31,7 +31,6 @@ db.sequelize.sync().then(result => {
 })
 
 // ROUTES
-
 app.use('/', registerRouter)
 app.use(token.tokenExtractor)
 app.use('/api/users', token.userExtractor, userRouter)
