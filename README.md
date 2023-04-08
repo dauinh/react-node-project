@@ -26,7 +26,7 @@ Users can register and log in as either **Admin** or **User**.
 - Calendar feature to see all tasks
 - **Admin** and **User** can change their own passwords.
 
-## **How to Install**
+## **Installation**
 
 This project requires the following tools:
 
@@ -34,29 +34,29 @@ This project requires the following tools:
 - [NPM](https://www.npmjs.com/): a package manager for Node.js
 - [PostgreSQL](https://www.postgresql.org/): a relational database system
 
-**Step 1: Clone repository**
+**Clone repository**
 
 In your folder, run following commands:
 
 ```
-$ git clone https://github.com/dauinh/react-node-project.git
-$ cd react-node-project
+git clone https://github.com/dauinh/react-node-project.git
+cd react-node-project
 ```
 
-**Step 2: Install dependencies**
+**Install dependencies**
 
 This project needs to install dependencies for both backend server and frontend.
 
 ```
 # in project root directory, install backend dependencies
-$ npm install
+npm install
 
 # install frontend dependencies
-$ cd client
-$ npm install
+cd client
+npm install
 ```
 
-**Step 3: Create environment variables**
+**Create environment variables**
 
 Before starting the app, you need to create a `.env` file in root directory with the following variables:
 
@@ -74,28 +74,24 @@ DB_HOST=127.0.0.1    # http://localhost
 
 *Note: `ADMIN_PASSWORD` is the password of the app's first **Admin**, but it only works before seeding. Undo most recent seeds by running `npx sequelize-cli db:seed:undo`.*
 
-**Step 4: Run server**
+**Run server**
 
 Change the proxy in `root/client/package.json` to whatever `PORT` you are using in `.env` file. The default port is `3000`.
-
-```
-"proxy": "http://localhost:[your_favorite_port]",
-```
 
 To start the app, you can run these commands in the project directory:
 
 ```
 # start migrating
-$ npx sequelize-cli db:migrate
-$ npx sequelize-chi db:seed:all
+npx sequelize-cli db:migrate
+npx sequelize-cli db:seed:all
 
 # start server
-$ npm start
+npm start
 ```
 
 Open the app in your browser with the appropiate `PORT`.
 
-## **How to Use**
+## **Usage**
 
 Create a new account from register form and log in to see **User**'s display.
 
