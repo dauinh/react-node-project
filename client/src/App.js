@@ -60,8 +60,6 @@ function App() {
           <Route path="/login">
             <Login setUser={setUser}/>
           </Route>
-        </Switch>
-        <Switch>
           <Route path="/register">
             <Register/>
           </Route>

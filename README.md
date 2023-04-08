@@ -76,8 +76,6 @@ DB_HOST=127.0.0.1    # http://localhost
 
 **Run server**
 
-Change the proxy in `root/client/package.json` to whatever `PORT` you are using in `.env` file. The default port is `3000`.
-
 To start the app, you can run these commands in the project directory:
 
 ```
@@ -88,8 +86,6 @@ npx sequelize-cli db:seed:all
 # start server
 npm start
 ```
-
-Open the app in your browser with the appropiate `PORT`.
 
 ## **Usage**
 
