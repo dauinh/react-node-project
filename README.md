@@ -58,10 +58,7 @@ npm install
 
 Before starting the app, you need to create a `.env` file in root directory with the following variables:
 
-```
-PORT=choose_your_favorite_port
-
-SECRET_KEY=key_to_create_password_hash
+```SECRET_KEY=key_to_create_password_hash
 ADMIN_PASSWORD=password_for_first_admin
 
 DB_USER=your_postgres_user
