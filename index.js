@@ -5,7 +5,6 @@ const cors = require('cors')
 const logger = require('morgan')
 
 const db = require('./db/models')
-const config = require('./config')
 const token = require('./middleware/token')
 const registerRouter = require('./routes/register')
 const userRouter = require('./routes/user')
@@ -38,6 +37,6 @@ app.use('/api/tasks', taskRouter)
 
 const server = http.createServer(app)
 
-server.listen(config.PORT || 3000, () => {
-  console.log(`🐕 Server running on port ${config.PORT} 🐕`)
+server.listen(8080, () => {
+  console.log(`🐕 Server running on port 8080 🐕`)
 })

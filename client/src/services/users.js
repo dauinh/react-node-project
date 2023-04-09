@@ -11,7 +11,7 @@ const getAll = async () => {
   const config = {
     headers: { Authorization: token },
   }
-  const response = await axios.get(baseUrl, config)
+  const response = await axios.get(`http://localhost:8080${ baseUrl }`, config)
   return response.data
 }
 
@@ -19,7 +19,7 @@ const getByUsername = async (username) => {
   const config = {
     headers: { Authorization: token },
   }
-  const response = await axios.get(`${ baseUrl }/${ username }`, config)
+  const response = await axios.get(`http://localhost:8080${ baseUrl }/${ username }`, config)
   return response.data
 }
 
@@ -27,7 +27,7 @@ const update = async (id, newObject) => {
   const config = {
     headers: { Authorization: token },
   }
-  const response = await axios.put(`${ baseUrl }/${ id }`, newObject, config)
+  const response = await axios.put(`http://localhost:8080${ baseUrl }/${ id }`, newObject, config)
   return response.data
 }
 
@@ -35,7 +35,7 @@ const deleteUser = async (id) => {
   const config = {
     headers: { Authorization: token },
   }
-  const response = await axios.delete(`${ baseUrl }/${ id }`, config)
+  const response = await axios.delete(`http://localhost:8080${ baseUrl }/${ id }`, config)
   return response.data
 }
 
