@@ -2,12 +2,6 @@
 
 My first web app using React and Node 🎉
 
-## **Demo**
-
-
-https://github.com/dauinh/react-node-project/assets/62679553/d98f268c-4774-4622-8780-e95207b1e44d
-
-
 ## **Description**
 
 ### *What your application does*
